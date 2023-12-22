@@ -1,0 +1,165 @@
+@mixin borders($radius: 100px, $weight: 0px) {
+    border: $weight solid;
+    border-radius: $radius;
+}
+@mixin sizes($width, $height){
+    width: $width;
+    height: $height;
+}
+@mixin flex-set($fd, $jc, $ai){
+    display: flex;
+    flex-direction: $fd;
+    align-items: $ai;
+    justify-content: $jc;
+}
+@mixin font-set($fs, $fw, $lh){
+    font-size: $fs;
+    font-weight: $fw;
+    line-height: $lh; 
+}
+
+
+
+body
+{
+	// position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(219, 214, 203);
+}
+
+.wrapper
+{
+	background-color:rgb(245, 245, 218);
+	width: 90%;
+	height: 95%;
+	border: 0px solid;
+	border-radius: 15px;
+	box-shadow: inset -2px -2px 3px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-start;
+}
+
+
+
+
+////////////////////////////////		WORKSPACE SELECTORS			/////////////////////////////////////////////
+
+.workspace
+{
+	background-color: rgb(231, 238, 212);
+	width: 500px; height: 500px;
+	margin-top: 60px;
+	overflow: scroll;
+	border-top: 1px solid;
+	// border-radius: 10px;
+}
+.wsh__grid_container
+{
+	position: sticky;
+	margin: 0px;
+	/* left: 0px; top: 0px; */
+	width: 100%; height: 100%;
+	display: grid;
+	// gap: 1px;
+	grid-template-rows: repeat(60, 1fr);
+	grid-template-columns: repeat(60, 1fr);
+}
+.wsh__grid_container *{ border: 0px solid; }
+.wsh__grid_container>div:hover {
+	// background-color: rgb(253, 218, 125);
+	border: .25px dashed;
+}
+
+
+
+
+
+
+////////////////////////////////		PALETTE SELECTORS			/////////////////////////////////////////////
+
+.palette
+{
+	@include sizes(420px,210px );
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+
+	.plt__grid_container
+	{
+		// position: relative;
+		@include sizes(100%,100% );
+		@include borders(15px, .1px);
+		box-shadow: inset 5px 5px 7.5px rgb(192, 149, 118);
+		display: grid;
+		grid-template-rows: 1fr 1.5fr;
+		grid-template-columns: repeat(7, 1fr);
+
+		output
+		{
+			place-self: center;
+			@include sizes(80%,60%);
+			@include borders(15px);
+			display: block;
+			box-shadow: inset -5px -5px 7.5px rgb(192, 149, 118), inset 2.5px 2.5px 5px white;
+		}
+		output:hover
+		{
+			box-shadow:
+			-5px -5px 7.5px rgb(97, 79, 137),
+			5px 5px 7.5px rgb(97, 79, 137);
+		}
+		output.clicked
+		{
+			@include borders(23px, 8px);
+			border-color:  rgb(97, 79, 137);
+		}
+		#palette__grid_8
+		{
+			grid-area: 2/1/3/8 ;
+			@include flex-set(column, space-evenly, center);
+			
+			& > *
+			{
+				@include sizes(80%, 25px);
+				@include borders(15px, 0px);
+				@include flex-set(row,flex-start  ,center );
+				box-shadow: inset 2.5px 2.5px 7.5px, inset -2.5px -2.5px 4.5px white;
+				// z-index: 0;
+			}
+
+			& > :first-child
+			{background-image: linear-gradient(90grad,rgb(193, 3, 3), rgb(231, 238, 212));}
+			& > :nth-child(2)
+			{background-image: linear-gradient(90grad,rgb(0, 172, 0), rgb(231, 238, 212));}
+			& > :last-child 
+			{background-image: linear-gradient(90grad,rgb(52, 52, 229), rgb(231, 238, 212));}
+
+			& > div > div
+			{
+				position: relative;
+				// @include sizes(90px, 25px);
+				@include sizes(70px, 32.5px);
+				@include borders(18px);
+				background-color: rgb(231, 238, 212);
+				box-shadow: inset -3.5px -3.5px 5px rgb(192, 149, 118), inset 2.5px 2.5px 5px rgb(239, 238, 238);
+				z-index: 1;
+			}
+
+			& > div > div:hover {@include sizes(70px, 35px);}
+		}
+	}
+
+}
+
+// .palette__thumbnail_1 
+// {
+// 	@include sizes(90px, 25px);
+// 	@include borders(15px);
+// 	background-color: rgb(231, 238, 212);
+// 	box-shadow: inset -5px -5px 7.5px rgb(192, 149, 118);
+// }
