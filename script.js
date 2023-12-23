@@ -130,14 +130,14 @@ let paletteObj =
 
 	getSlider(elem, num)
 	{
-		let elem2_2 = document.createElement('div');
+		let elem2_2 = document.createElement('div');								// pointerdown pointerup pointermove 
 		elem2_2.className = `palette__slider_${num}`;
 		elem2_2.id = `palette__slider_${num}`;
 		let elem2_3 = document.createElement('div');
 		elem2_3.className = `palette__thumbnail_${num}`;
 		elem2_3.id = `palette__thumbnail_${num}`;
 
-		elem2_3.addEventListener('mousedown', (event) => {this.sliderDnDv2(event)});
+		elem2_3.addEventListener('pointerdown', (event) => {this.sliderDnDv2(event)});
 
 		elem2_2.append(elem2_3);
 		elem.append(elem2_2);
@@ -152,10 +152,10 @@ let paletteObj =
 
 		let shiftX = event.clientX - thumb.getBoundingClientRect().left;
 
-		document.addEventListener('mousemove', onMouseMove);
-		document.addEventListener('mouseup', onMouseUp);
-		document.addEventListener('mousemove', setcol);
-		document.addEventListener('mousemove', showCol);
+		document.addEventListener('pointermove', onMouseMove);
+		document.addEventListener('pointerup', onMouseUp);
+		document.addEventListener('pointermove', setcol);
+		document.addEventListener('pointermove', showCol);
 
 
 		function setcol(event){paletteObj.setColor(event)}
@@ -172,10 +172,10 @@ let paletteObj =
 
 		function onMouseUp()
 		{
-			document.removeEventListener('mouseup', onMouseUp);
-			document.removeEventListener('mousemove', onMouseMove);
-			document.removeEventListener('mousemove', setcol);
-			document.removeEventListener('mousemove', showCol);
+			document.removeEventListener('pointerup', onMouseUp);
+			document.removeEventListener('pointermove', onMouseMove);
+			document.removeEventListener('pointermove', setcol);
+			document.removeEventListener('pointermove', showCol);
 
 		}
 
